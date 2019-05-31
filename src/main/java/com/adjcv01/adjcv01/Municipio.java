@@ -4,19 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
-@Entity
-@Table(name="Municipio")
-public class Municipio {
-    public Integer getIdMunicipio() {
-        return idMunicipio;
-    }
-
-    public void setIdMunicipio(Integer idMunicipio) {
-        this.idMunicipio = idMunicipio;
-    }
+    @Entity
+    @Table(name="Municipio")
+    public class Municipio {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer idMunicipio;
     @NotNull
     private String nombre;
@@ -29,8 +22,6 @@ public class Municipio {
         this.setNombre(nombre);
         this.setFecha(fecha);
     }
-
-
 
     public String getNombre() {
         return nombre;
@@ -47,4 +38,13 @@ public class Municipio {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public Integer getIdMunicipio() {
+        return idMunicipio;
+    }
+
+    public void setIdMunicipio(Integer idMunicipio) {
+        this.idMunicipio = idMunicipio;
+    }
+
 }

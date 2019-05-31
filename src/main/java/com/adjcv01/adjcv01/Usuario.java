@@ -4,22 +4,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
+    @Entity
+    @Table(name="Usuario")
+    public class Usuario {
 
-@Entity
-@Table(name="Usuario")
-public class Usuario {
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotNull
     private String nombre;
+    private Date fecnac;
+
 
     public Usuario(@NotNull String nombre, Date fecnac) {
 
@@ -27,15 +22,15 @@ public class Usuario {
         this.fecnac = fecnac;
     }
 
-    public Usuario() {
+    public Usuario() { }
+
+    public Integer getId() {
+        return id;
     }
 
-
-
-
-
-
-
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -53,5 +48,4 @@ public class Usuario {
         this.fecnac = fecnac;
     }
 
-    private Date fecnac;
 }
