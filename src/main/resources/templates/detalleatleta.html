@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<b>ID: </b>
+<p th:text="${atleta.idAtleta}"></p>
+<b>Nombre_Atleta: </b>
+<p th:text="${atleta.nombreAtleta}"></p>
+<b>Apellido_Atleta: </b>
+<p th:text="${atleta.apellidoAtleta}"></p>
+<b>Edad_Atleta: </b>
+<p th:text="${atleta.edadAtleta}"></p>
+<!--<b>Cumpleanios_Atleta: </b>
+<p th:text="${atleta.cumpleanios}"></p>-->
+<b>Categoria: </b>
+<p th:text="${atleta.categoria}"></p>
+<a href="/listaratletas">Back</a>
+
+</body>
+</html>

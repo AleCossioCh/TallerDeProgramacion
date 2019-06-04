@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Lista de Clubs</h1>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Nombre_Club</td>
+    </tr>
+
+    <tr th:each="listarclubs: ${listarclubs}">
+        <td th:text="${listarclubs.idClub}"></td>
+        <td th:text="${listarclubs.nombreClub}"></td>
+        <td>
+            <a th:href="@{/detalleclub/}+${listarclubs.idClub}">DETALLE</a>
+            <a th:href="@{/editClub/}+${listarclubs.idClub}">EDITAR</a>
+            <a th:href="@{/elimClub/}+${listarclubs.idClub}">ELIMINAR</a>
+        </td>
+    </tr>
+
+
+
+</table>
+</body>
+</html>
