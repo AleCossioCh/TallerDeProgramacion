@@ -1,5 +1,6 @@
 package com.adjcv01.adjcv01;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,11 @@ public class AtletaController {
     @Autowired
     private AtletaRepository atletaRepository;
 
-    @RequestMapping(value="/listaratletas", method = RequestMethod.GET)
+    @RequestMapping(value="listarAtletas", method = RequestMethod.GET)
     public String atletas(Model modelo){
         Iterable<Atleta> atletas = atletaRepository.findAll();
-        modelo.addAttribute("listaratletas", atletas);
-        return("atletas");
+        modelo.addAttribute("listarAtleta", atletas);
+        return ("atletas");
     }
 
     @RequestMapping(value="/atleta/new", method = RequestMethod.GET)
@@ -28,32 +29,31 @@ public class AtletaController {
     }
 
     @RequestMapping(value="atletas", method = RequestMethod.POST)
-    public String createAtleta(@ModelAttribute("atletas") Atleta a, Model modelo){
+    public String create(@ModelAttribute("atletas") Atleta a, Model modelo){
         atletaRepository.save(a);
-        return "redirect:/listaratletas";
+        return "redirect:/listarAtletas";
     }
 
-    @RequestMapping(value="/detalleatleta/{idAtleta}", method = RequestMethod.GET) //este es elDetalle
-    public String detalleatleta(@PathVariable Integer idAtleta, Model modelo){
+    @RequestMapping(value="/atletash/{idAtleta}", method = RequestMethod.GET) //este es elDetalle
+    public String atletash(@PathVariable Integer idAtleta, Model modelo){
         Optional<Atleta> captura = atletaRepository.findById(idAtleta);
-        //va a trabajar con MunicipioRepository
         Atleta a = captura.get();
-        modelo.addAttribute("atleta",a);//El modelo le va a enviar como mun, el m municipio
-        return "detalleatleta";//Se va a mostrar en esta pagina
+        modelo.addAttribute("atle",a);
+        return "detalleatleta";
     }
 
-    @RequestMapping(value="elimAtleta/{idAtleta}")
-    public String elimAtleta(@PathVariable Integer idAtleta,Model modelo){
+    @RequestMapping(value="elimAtle/{idAtleta}")
+    public String elimMun(@PathVariable Integer idAtleta,Model modelo){
         atletaRepository.deleteById(idAtleta);
-        return "redirect:/listaratletas";
+        return "redirect:/listarAtletas";
     }
 
-    @RequestMapping(value = "/editAtleta/{idAtleta}")
-    public String editAtleta(@PathVariable Integer idAtleta, Model model){
+    @RequestMapping(value = "/editatleta/{idAtleta}")
+    public String editatleta(@PathVariable Integer idAtleta, Model model){
         Optional<Atleta> edito = atletaRepository.findById(idAtleta);
         Atleta a = edito.get();
-        model.addAttribute("atleta",a);
-        return "editAtleta";
+        model.addAttribute("atle",a);
+        return "editatleta";
     }
 
     @RequestMapping(value = "atletaActualizar", method = RequestMethod.POST)
@@ -62,11 +62,11 @@ public class AtletaController {
         Atleta nuevo = editoagain.get();
         nuevo.setIdAtleta(a.getIdAtleta());
         nuevo.setNombreAtleta(a.getNombreAtleta());
+        nuevo.setCategoria(a.getCategoria());
         nuevo.setApellidoAtleta(a.getApellidoAtleta());
         nuevo.setEdadAtleta(a.getEdadAtleta());
-        nuevo.setCategoria(a.getCategoria());
+        nuevo.setClub(a.getClub());
         atletaRepository.save(nuevo);
-        return "redirect:/listaratletas";
+        return "redirect:/listarAtletas";
     }
-
 }

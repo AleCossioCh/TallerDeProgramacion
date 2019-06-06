@@ -8,20 +8,18 @@
 <body>
 <form action="/atletaActualizar" method="POST">
     <input type="hidden" name="idAtleta" th:value="${atleta.idAtleta}">
-
     <b>Nombre_Atleta: </b>
     <input type="text" name="nombreAtleta" th:value="${atleta.nombreAtleta}">
     <b>Apellido_Atleta: </b>
     <input type="text" name="apellidoAtleta" th:value="${atleta.apellidoAtleta}">
     <b>Edad:</b>
     <input type="text" name="edadAtleta" th:value="${atleta.edadAtleta}">
-    <!--
-    <b>Cumpleaños:</b>
-    <input type="date" name="cumpleanios" th:value="${atleta.cumpleanios}"> -->
     <b>Categoria: </b>
     <input type="text" name="categoria" th:value="${atleta.categoria}">
 
-    <input type="submit" name="atletaActualizar"/>
+    <input type="submit" name="actualizarAtleta"/>
 </form>
 </body>
 </html>
+
+

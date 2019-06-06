@@ -17,20 +17,19 @@ public class Atleta {
     private String apellidoAtleta;
     private Integer edadAtleta;
     private String categoria;
-
     @ManyToOne
     @JoinColumn(name = "idClub")
     private Club club;
-    public Club getClub() {
-        return club;
-    }
-
 
     public Atleta(@NotNull String nombreAtleta, String apellidoAtleta, Integer edadAtleta, Date cumpleanios, String categoria) {
         this.nombreAtleta = nombreAtleta;
         this.apellidoAtleta = apellidoAtleta;
         this.edadAtleta = edadAtleta;
         this.categoria = categoria;
+    }
+
+    public Atleta(){
+
     }
 
     public Integer getIdAtleta() {
@@ -73,37 +72,12 @@ public class Atleta {
         this.categoria = categoria;
     }
 
-
     public void setClub(Club club) {
         this.club = club;
     }
 
-    public Atleta() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Atleta)) return false;
-        Atleta atleta = (Atleta) o;
-        return Objects.equals(getIdAtleta(), atleta.getIdAtleta());
-    }
-
-    @Override
-    public String toString() {
-        return "Atleta{" +
-                "idAtleta=" + idAtleta +
-                ", nombreAtleta='" + nombreAtleta + '\'' +
-                ", apellidoAtleta='" + apellidoAtleta + '\'' +
-                ", edadAtleta=" + edadAtleta +
-                ", categoria='" + categoria + '\'' +
-                ", club=" + club +
-                '}';
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdAtleta());
+    public Club getClub() {
+        return club;
     }
 }
 
