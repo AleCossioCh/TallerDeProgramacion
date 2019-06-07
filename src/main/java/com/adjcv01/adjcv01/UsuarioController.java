@@ -15,6 +15,10 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String registrationInit() {
+        return "inicio";
+    }
     @RequestMapping(value="/listarUsuario", method = RequestMethod.GET)
     public String usuarios(Model modelo){
         Iterable<Usuario> usuarios = usuarioRepository.findAll();

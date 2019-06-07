@@ -3,6 +3,7 @@ package com.adjcv01.adjcv01;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name="Municipio")
@@ -21,6 +22,17 @@ public class Municipio {
     @NotNull
     private String nombre;
     private Date fecha;
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
+    }
+
+    @OneToMany(mappedBy = "municipio")
+    private List<Club> clubs;
 
     public Municipio() {
     }

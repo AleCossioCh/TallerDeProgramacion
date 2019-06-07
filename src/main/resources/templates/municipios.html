@@ -13,12 +13,19 @@
         <td>Id</td>
         <td>NombreMunicipio</td>
         <td>FechadeFundacion</td>
+        <td>CLUBS</td>
     </tr>
 
     <tr th:each="listamunicipios: ${listamunicipios}">
         <td th:text="${listamunicipios.idMunicipio}"></td>
         <td th:text="${listamunicipios.nombre}"></td>
         <td th:text="${listamunicipios.fecha}"></td>
+        <td>
+            <th:block th:each="rol,iter: ${listamunicipios.clubs}">
+                <label th:text="${rol.nombreClub}"></label>
+                <th:block th:if="${!iter.last}">, </th:block>
+            </th:block>
+        </td>
         <td>
             <a th:href="@{/municipiosh/}+${listamunicipios.idMunicipio}">detalle</a>
             <a th:href="@{/editmunicipio/}+${listamunicipios.idMunicipio}">editar</a>
@@ -29,5 +36,6 @@
 
 
 </table>
+<a href="/">HOME</a>
 </body>
 </html></html>

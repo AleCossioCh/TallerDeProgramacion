@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/atletaActualizar" method="POST">
+    <input type="hidden" name="idAtleta" th:value="${atleta.idAtleta}">
+
+    <b>Nombre_Atleta: </b>
+    <input type="text" name="nombreAtleta" th:value="${atleta.nombreAtleta}">
+    <b>Apellido_Atleta: </b>
+    <input type="text" name="apellidoAtleta" th:value="${atleta.apellidoAtleta}">
+    <b>Edad:</b>
+    <input type="text" name="edadAtleta" th:value="${atleta.edadAtleta}">
+
+    <b>Categoria: </b>
+    <select th:field="${atleta.categoria}" th:value="${atleta.categoria}" >
+        <option th:value="Infantil" th:text="Infantil"/>
+        <option th:value="Adulto" th:text="Adulto"/>
+        <option th:value="Profecional" th:text="Profecional"/>
+    </select>
+    <b>club</b>
+    <select th:field="*{atleta.club}" th:value="${atleta.club.nombreClub}">
+        <option th:each="muni :${clubs}" th:value="${muni.idClub}" th:text="${muni.nombreClub}">
+
+        </option>
+    </select><br/>
+
+    <input type="submit" name="atletaActualizar"/>
+</form>
+</body>
+</html>

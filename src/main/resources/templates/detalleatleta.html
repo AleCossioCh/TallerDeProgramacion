@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <b>ID: </b>
+    <p th:text="${atleta.idAtleta}"></p>
+    <b>Nombre_Atleta: </b>
+    <p th:text="${atleta.nombreAtleta}"></p>
+    <b>Apellido_Atleta: </b>
+    <p th:text="${atleta.apellidoAtleta}"></p>
+    <b>Edad_Atleta: </b>
+    <p th:text="${atleta.edadAtleta}"></p>
+    <b>Categoria: </b>
+    <p th:text="${atleta.categoria}"></p>
+    <b>NombreClub</b>
+    <td th:text="${atleta.club.nombreClub}"></td>
+
+    <a href="/listaratletas">Back</a>
+
+</body>
+</html>
