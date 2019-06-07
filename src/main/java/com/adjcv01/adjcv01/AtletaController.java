@@ -3,13 +3,12 @@ package com.adjcv01.adjcv01;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+import static sun.misc.MessageUtils.where;
 
 @Controller
 public class AtletaController {
@@ -55,16 +54,7 @@ public class AtletaController {
         return "redirect:/listaratletas";
     }
 
-    @RequestMapping(value = "/editAtleta/{idAtleta}")
-    public String editAtleta(@PathVariable Integer idAtleta, Model model){
-        Optional<Atleta> edito = atletaRepository.findById(idAtleta);
 
-        List<Club> clubs  = (List) clubRepository.findAll();
-        Atleta a = edito.get();
-        model.addAttribute("clubs", clubs);
-        model.addAttribute("atleta",a);
-        return "editAtleta";
-    }
 
     @RequestMapping(value = "atletaActualizar", method = RequestMethod.POST)
     public String atletaActualizar(@ModelAttribute ("atleta") Atleta a, Model model){
@@ -80,4 +70,43 @@ public class AtletaController {
         return "redirect:/listaratletas";
     }
 
+    @RequestMapping(value = "/editAtleta/{idAtleta}")
+    public String editAtleta(@PathVariable Integer idAtleta, Model model){
+        Optional<Atleta> edito = atletaRepository.findById(idAtleta);
+
+        List<Club> clubs  = (List) clubRepository.findAll();
+        Atleta a = edito.get();
+        model.addAttribute("clubs", clubs);
+        model.addAttribute("atleta",a);
+        return "editAtleta";
+    }
+
+    @RequestMapping(value="/listaratletasinfantil", method = RequestMethod.GET)
+    public String findInfantil(Model modelo){
+        Iterable<Atleta> atletas = atletaRepository.findByCategoryInfantil();
+        modelo.addAttribute("listaratletasinfantil", atletas);
+        return("atletasInfantil");
+    }
+
+    @RequestMapping(value="/listaratletasadulto", method = RequestMethod.GET)
+    public String findAdulto(Model modelo){
+        Iterable<Atleta> atletas = atletaRepository.findByCategoryAdulto();
+        modelo.addAttribute("listaratletasadulto", atletas);
+        return("atletasAdulto");
+    }
+
+    @RequestMapping(value="/listaratletasprofecional", method = RequestMethod.GET)
+    public String findProfecional(Model modelo){
+        Iterable<Atleta> atletas = atletaRepository.findByCategoryProfecional();
+        modelo.addAttribute("listaratletasprofecional", atletas);
+        return("atletasProfecional");
+    }
+
+    @RequestMapping(value="/listaratletascategoriamunicipio", method = RequestMethod.GET)
+    public String findatleta(@ModelAttribute ("categoriaBuscada") String categoriaBuscada,
+                             @ModelAttribute ("idMunicipioBuscado") Integer idMunicipio, Model modelo){
+        Iterable<Atleta> atletas = atletaRepository.findByCategoriaAndMunicipio(categoriaBuscada, idMunicipio);
+        modelo.addAttribute("listaratletascategoriamunicipio", atletas);
+        return("atletasCategoriaMunicipio");
+    }
 }

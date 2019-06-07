@@ -3,6 +3,7 @@ package com.adjcv01.adjcv01;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name="Atleta")
@@ -24,6 +25,16 @@ public class Atleta {
         return club;
     }
 
+    @ManyToMany(mappedBy = "atletas")
+    private List<Campeonato> campeonatos;
+
+    public List<Campeonato> getCampeonatos() {
+        return campeonatos;
+    }
+
+    public void setCampeonatos(List<Campeonato> campeonatos) {
+        this.campeonatos = campeonatos;
+    }
 
     public Atleta(@NotNull String nombreAtleta, String apellidoAtleta, Integer edadAtleta, Date cumpleanios, String categoria) {
         this.nombreAtleta = nombreAtleta;
@@ -104,4 +115,6 @@ public class Atleta {
     public int hashCode() {
         return Objects.hash(getIdAtleta());
     }
+
+
 }

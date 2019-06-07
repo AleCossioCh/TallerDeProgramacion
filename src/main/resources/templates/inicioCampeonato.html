@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span>Informacion</span>
+<form th:action="@{/crearCampeonato}" th:object="${campeonato}"  method="POST" id="userForm">
+    <div style="border: 1px solid black; padding:20px;">
+        <!--
+        <span th:if="${campeonato.idCampeonato !=null}"><input type="text" th:field="${campeonato.idCampeonato}" readonly><br/></span>
+
+        <label th:text="idPrimerAtletaAdulto"></label><br/>
+
+        <select th:field="${campeonato.idPrimerAtletaJuvenil}" multiple="multiple">
+            <option th:each="atle :${listaratletasadulto}" th:value="${atle.idAtleta}" >
+            </option>
+        </select><br/>
+
+        <label th:text="idPrimerAtletaInfantil"></label><br/>
+        <select th:field="${campeonato.idPrimerAtletaInfantil}" multiple="multiple">
+            <option th:each="atle :${atletasInfantil}" th:value="${atle.idAtleta}" >
+            </option>
+        </select><br/>
+
+        <label th:text="idPrimerAtletaProfesional"></label><br/>
+        <select th:field="${campeonato.idPrimerAtletaProfesional}" multiple="multiple">
+            <option th:each="atle :${atletasProfesional}" th:value="${atle.idAtleta}" >
+            </option>
+        </select><br/>
+        -->
+        <label th:text="'Fecha'"></label><br/>
+        <input type="date" th:field="${campeonato.fechaCampeonato}" /></br>
+
+        <label th:text="Atleta"></label><br/>
+        <select th:field="${campeonato.atletas}" multiple="multiple">
+            <option th:each="atleta :${atletas}" th:value="${atleta.idAtleta}" th:text="${atleta.idAtleta}">
+            </option>
+        </select><br/>
+    </div>
+
+    <input type="Submit" th:value="${campeonato.idCampeonato != null }?'Guardar Campeonato':'Crear Campeonato'" th:class="button"/>
+    <th:block th:if="${campeonato.idCampeonato !=null}">
+        <a th:href="@{/inicioCampeonato}">Cancel</a>
+    </th:block>
+</form>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID Campeonato</th>
+        <!--
+        <th>idPrimerAtletaJuvenil</th>
+        <th>idPrimerAtletaInfantil</th>
+        <th>idPrimerAtletaProfesional</th>
+        -->
+        <th>fechaCampeonato</th>
+        <th>Id Atletas</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="campeonato : ${campeonatos}">
+        <td th:text="${campeonato.idCampeonato}"></td>
+        <!--
+        <td th:text="${campeonato.idPrimerAtletaJuvenil}"></td>
+        <td th:text="${campeonato.idPrimerAtletaInfantil}"></td>
+        <td th:text="${campeonato.idPrimerAtletaProfesional}"></td>
+        -->
+        <td th:date="${campeonato.fechaCampeonato}"></td>
+
+        <td>
+            <th:block th:each="atleta,iter: ${campeonato.atletas}">
+                <label th:text="${atleta.idAtleta}"></label>
+                <th:block th:if="${!iter.last}">, </th:block>
+            </th:block>
+        </td>
+        <td><a th:href="@{'/editarCampeonato/'+ ${campeonato.idCampeonato}}"> Editar </a> | <a th:href="@{'/eliminarCampeonato/' + ${campeonato.idCampeonato}}">Eliminar</a></td>
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+<a href="/">HOME</a>
+</html>

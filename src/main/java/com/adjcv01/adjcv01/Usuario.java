@@ -21,6 +21,7 @@ public class Usuario {
     @NotNull
     private String nombre;
 
+
     public Usuario(@NotNull String nombre, Date fecnac) {
 
         this.nombre = nombre;
@@ -29,13 +30,6 @@ public class Usuario {
 
     public Usuario() {
     }
-
-
-
-
-
-
-
 
     public String getNombre() {
         return nombre;

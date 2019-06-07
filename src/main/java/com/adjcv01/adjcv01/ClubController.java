@@ -16,6 +16,8 @@ public class ClubController {
         private ClubRepository clubRepository;
         @Autowired
         private MunicipioRepository municipioRepository;
+        @Autowired
+        private  AtletaRepository atletaRepository;
 
         @RequestMapping(value="/listarclubs", method = RequestMethod.GET)
         public String clubs(Model modelo){
@@ -78,8 +80,5 @@ public class ClubController {
             clubRepository.save(nuevo);
             return "redirect:/listarclubs";
         }
-
-
-
 
 }
