@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/clubs" method="POST">
+    <b>Nombre_Club:</b>
+    <input type="text" name="nombreClub"/>
+
+
+    <label th:text="Municipio"></label><br/>
+    <!--<select th:field="${club.municipio}" multiple="multiple">-->
+    <select th:field="*{club.municipio}">
+        <option th:each="muni :${municipios}" th:value="${muni.idMunicipio}" th:text="${muni.nombre}">
+
+        </option>
+    </select><br/>
+    <input type="submit" value="Guardar"/>
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
+<style>
+    body{
+        background-color: #999999;
+    }
+</style>

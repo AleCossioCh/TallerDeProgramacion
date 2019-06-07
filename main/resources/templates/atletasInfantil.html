@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Lista de Atletas</h1>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Nombre_Atleta</td>
+        <td>Apellido_Atleta</td>
+        <td>Edad</td>
+        <td>Categoria</td>
+        <td>Club Nombre</td>
+    </tr>
+
+    <tr th:each="listaratletasinfantil: ${listaratletasinfantil}">
+        <td th:text="${listaratletasinfantil.idAtleta}"></td>
+        <td th:text="${listaratletasinfantil.nombreAtleta}"></td>
+        <td th:text="${listaratletasinfantil.apellidoAtleta}"></td>
+        <td th:text="${listaratletasinfantil.edadAtleta}"></td>
+        <td th:text="${listaratletasinfantil.categoria}"></td>
+        <td th:text="${listaratletasinfantil.club.nombreClub}"></td>
+        <td>
+            <a th:href="@{/detalleatleta/}+${listaratletasinfantil.idAtleta}">DETALLE</a>
+            <a th:href="@{/editAtleta/}+${listaratletasinfantil.idAtleta}">EDITAR</a>
+            <a th:href="@{/elimAtleta/}+${listaratletasinfantil.idAtleta}">ELIMINAR</a>
+        </td>
+    </tr>
+
+
+
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+<style>
+    body{
+        background-color: #999999;
+    }
+</style>

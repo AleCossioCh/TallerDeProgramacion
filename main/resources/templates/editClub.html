@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/clubActualizar" method="POST">
+    <input type="hidden" name="idClub" th:value="${club.idClub}">
+    <b>Nombre: </b>
+    <input type="text" name="nombreClub" th:value="${club.nombreClub}">
+    <label th:text="Municipio"></label><br/>
+    <select th:field="*{club.municipio}" th:value="${club.municipio.nombre}">
+        <option th:each="muni :${municipios}" th:value="${muni.idMunicipio}" th:text="${muni.nombre}">
+
+        </option>
+    </select><br/>
+    <input type="submit" name="clubActualizar"/>
+</form>
+<a href="/listarclubs">Back</a>
+</body>

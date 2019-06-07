@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>Lista de Atletas</h1>
+</div>
+
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Nombre_Atleta</td>
+        <td>Apellido_Atleta</td>
+        <td>Edad</td>
+        <td>Categoria</td>
+        <td>Club Nombre</td>
+    </tr>
+
+    <tr th:each="listaratletas: ${listaratletas}">
+        <td th:text="${listaratletas.idAtleta}"></td>
+        <td th:text="${listaratletas.nombreAtleta}"></td>
+        <td th:text="${listaratletas.apellidoAtleta}"></td>
+        <td th:text="${listaratletas.edadAtleta}"></td>
+        <td th:text="${listaratletas.categoria}"></td>
+        <td th:text="${listaratletas.club.nombreClub}"></td>
+        <td>
+            <a th:href="@{/detalleatleta/}+${listaratletas.idAtleta}">DETALLE</a>
+            <a th:href="@{/editAtleta/}+${listaratletas.idAtleta}">EDITAR</a>
+            <a th:href="@{/elimAtleta/}+${listaratletas.idAtleta}">ELIMINAR</a>
+        </td>
+    </tr>
+
+
+
+</table>
+<a href="/">HOME</a>
+</body>
+</html>
+<style>
+    body{
+        background-color: #999999;
+    }
+</style>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/atletas" method="POST">
+    <div>
+        <b>Nombre_Atleta: </b>
+        <input type="text" name="nombreAtleta"/>
+    </div><br/>
+
+    <div>
+        <b>Apellido_Atleta: </b>
+        <input type="text" name="apellidoAtleta"/>
+    </div><br/>
+
+    <div>
+        <b>Edad:</b>
+        <input type="text" name="edadAtleta"/>
+    </div><br/>
+
+    <div>
+        <b>Categoria: </b>
+        <select th:field="${atleta.categoria}" >
+            <option th:value="Infantil" th:text="Infantil"/>
+            <option th:value="Adulto" th:text="Adulto"/>
+            <option th:value="Profecional" th:text="Profecional"/>
+        </select>
+
+    </div><br/>
+
+    <div>
+        <b>id Clubs: </b>
+    </div>
+
+    <div>
+
+        <select th:field="${atleta.club}">
+            <option th:each="club :${clubs}" th:value="${club.idClub}" th:text="${club.nombreClub}">
+            </option><br/>
+        </select>
+    </div><br/>
+
+    <div>
+        <input type="submit" value="Guardar"/>
+    </div><br/>
+
+</form>
+<a href="/">HOME</a>
+</body>
+</html>
